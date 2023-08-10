@@ -1,14 +1,21 @@
-const express = require('express')
-const app = express()
+// var path = require('path');
+// import path  from 'path'
+import express from 'express';
+import { engine } from 'express-handlebars';
 const port = 3000
+const app = express();
 
-app.get('/abc', (req, res) => {
-  var a = 1;
-  var b = 2; 
-  var c = a + b
-  res.send('Hello World!')
-})
-
+app.engine('.hbs', engine({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+app.set('views', './src/resouces/views');
+// app.set('views', path.join(__dirname, 'views'));
+app.use(express.static('./src/public'))
+app.get('/', (req, res) => {
+    res.render('home');
+});
+app.get('/news', (req, res) => {
+  res.render('news');
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "nodemon --inspect src/index.js"
+    "dev": "nodemon --inspect src/index.js",
+    "watch" : "node-sass --watch src/resouces/sass/ -o src/public/css/"
   },
   "repository": {
     "type": "git",
@@ -16,14 +17,19 @@
   ],
   "author": "linh",
   "license": "ISC",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/linh8198/nodejs/issues"
   },
   "homepage": "https://github.com/linh8198/nodejs#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "handlebars": "^4.7.8"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^9.0.0",
     "nodemon": "^3.0.1"
   }
 }
