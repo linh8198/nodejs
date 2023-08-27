@@ -17,11 +17,42 @@ let getCRUD = (req, res) => {
 }
 
  let postCRUD = async (req, res) => {
-  await CRUDservice(req.body)
+  await CRUDservice.createNewUser(req.body)
    return res.send('crudaa')
+ }
+ let displayGetCRUD = async(req, res) => {
+   let data=  await CRUDservice.getAllUsers()
+    return res.render('users.ejs', {
+        data: data
+    })
+ }
+ 
+ let getEditPage = async(req, res) => {
+    let userId = req.query.id
+    let user = await CRUDservice.getUser(userId)
+    return res.render('editPage.ejs', {user})
+ }
+
+ let editUser = async (req, res) => {
+    let data = req.body
+   
+      let users =   await CRUDservice.updateUser(data)
+
+    return res.render("users.ejs", {data : users})
+ }
+
+ let deleteCRUD = async (req, res) => {
+    let userId = req.query.id
+   let users =  await CRUDservice.deleteUser(userId)
+    return res.render('users',{data: users})
  }
 module.exports = {
     getHomePage,
     getCRUD,
-    postCRUD
+    postCRUD,
+    displayGetCRUD,
+    getEditPage,
+    editUser,
+    deleteCRUD,
+
 }

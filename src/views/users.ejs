@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+    <h1>Gets all Users</h1>
+    <p><%=data%></p>
+    <table>
+        <tr>
+          <th>email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+        <% for (var i = 0; i < data.length; i++) { %>
+            <tr>
+                <td><%=data[i].email%></td>
+                <td><%=data[i].firstName%></td>
+                <td><%=data[i].lastName%></td>
+                <td><%=data[i].address%></td>
+                <td>
+                  <a href="/edit-crud?id=<%=data[i].id%>" type="button" >Edit</a>
+                  <a href="/delete-crud?id=<%=data[i].id%>" type="button" >Delete</a>
+                </td>
+            </tr>
+                    
+            <% } %>
+      </table>
+</body>
+</html>
